@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormlyFieldConfig } from '@ngx-formly/core';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dynamicForm';
-  person = {
+  personOne = {
     firstName: {
       value: 'Jack',
       label: 'Firstname',
@@ -40,7 +42,7 @@ export class AppComponent {
       label: 'Age',
       type: 'number',
       validators: {
-        min: 18, 
+        min: 18,
       },
     },
     city: {
@@ -55,5 +57,70 @@ export class AppComponent {
       ]
     }
   };
+
+  person = {
+    firstName: 'Pinco',
+    surName: 'Palla',
+    gender: 'M',
+    age: 32,
+  };
+
+  personFields = <FormlyFieldConfig> [
+    {
+      key: 'firstName',
+      type: 'input',
+      templateOptions: {
+        label: 'Firstname',
+      },
+      validators: {
+        validation: Validators.required,
+      },
+      validation: {
+        messages: {
+          required: 'This field is required, you have to provide a value for it.',
+        }
+      }
+    },
+    {
+      key: 'surName',
+      type: 'input',
+      templateOptions: {
+        label: 'Surname',
+      },
+      validators: {
+        validation: Validators.required,
+      },
+      validation: {
+        messages: {
+          required: 'This field is required, you have to provide a value for it.',
+        }
+      }
+    },
+    {
+      key: 'gender',
+      type: 'radio',
+      templateOptions: {
+        label: 'Gender',
+        options: [{ value: 'Male', key: 'M' },{ value: 'Female', key: 'F' }],
+      },
+    },
+    {
+      key: 'age',
+      type: 'input',
+      templateOptios: {
+        label: 'Age',
+        type: 'number'
+      },
+      validators: {
+        validation: Validators.min(18)
+      },
+      validation: {
+        messages: {
+          min: 'You need to specify a value greater or equal to 18',
+        }
+      }
+    }
+  ];
+
 
 }

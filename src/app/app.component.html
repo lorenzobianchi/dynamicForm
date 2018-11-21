@@ -4,7 +4,11 @@
 </nav>
 
 <div style="padding-top: 60px;">
-  <app-dynamic-form [formDataObj]="person"></app-dynamic-form>
+  <app-dynamic-form [formDataObj]="personOne"></app-dynamic-form>
+</div>
+
+<div class="bg-dark text-white">
+  <app-ngx-formly-form [data]="person" [formDataObj]="personFields"></app-ngx-formly-form>
 </div>
 
 <router-outlet></router-outlet>
