@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row">
     <div class="col-md-12">
       <h2>Form dynamic</h2>
@@ -31,6 +31,16 @@
                   {{ o.label }}
               </label>
             </div>
+
+            <div class="error" *ngIf="form.get(prop.key).invalid && (form.get(prop.key).dirty || form.get(prop.key).touched)">
+              <div *ngIf="form.get(prop.key).errors.required">
+                This field is required, you have to provide a value for it.
+              </div>
+              <div *ngIf="form.get(prop.key).errors.min">
+                You have to provide a value greater or equal to {{ form.get(prop.key).errors.min.min }}
+              </div>
+            </div>
+
           </div>
         </div>
       </form>

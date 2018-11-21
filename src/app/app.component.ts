@@ -11,7 +11,10 @@ export class AppComponent {
     firstName: {
       value: 'Jack',
       label: 'Firstname',
-      type: 'text'
+      type: 'text',
+      validators: {
+        required: true,
+      }
     },
     surName: {
       value: 'Frusciante',
@@ -35,7 +38,10 @@ export class AppComponent {
     age: {
       value: 32,
       label: 'Age',
-      type: 'number'
+      type: 'number',
+      validators: {
+        min: 18, 
+      },
     },
     city: {
       label: 'City',
