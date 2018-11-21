@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Form dynamic</h2>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="form">
+        <div *ngFor="let prop of personProps" class="form-group">
+          <label>{{ prop.label }}</label>
+
+          <div [ngSwitch]="prop.type">
+            <input *ngSwitchCase="'text'" class="form-control" [type]="prop.type" [formControlName]="prop.key" />
+            <input *ngSwitchCase="'number'" class="form-control" [type]="prop.type" [formControlName]="prop.key" />
+            <select *ngSwitchCase="'select'" [formControlName]="prop.key">
+              <option *ngFor="let option of prop.options" [value]="option.value">
+                {{ option.label }}
+              </option>
+            </select>
+
+            <div *ngSwitchCase="'radio'">
+              <label *ngFor="let o of prop.options" class="mr-2">
+                <input
+                  type="radio"
+                  [name]="prop.key"
+                  [formControlName]="prop.key"
+                  [value]="o.value">
+                  {{ o.label }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <pre>{{ form.value | json }}</pre>
+    </div>
+  </div>
+
+</div>
